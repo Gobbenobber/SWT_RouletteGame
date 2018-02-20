@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 namespace RouletteGame.Legacy
 {
-    public class Roulette
+    public interface IRoulette
+    {
+        void Spin();
+        IField GetResult();
+    }
+    public class Roulette : IRoulette
     {
         private readonly List<IField> _fields;
         private IField _result;
