@@ -5,12 +5,12 @@ namespace RouletteGame.Legacy
 {
     public class Roulette
     {
-        private readonly List<Field> _fields;
-        private Field _result;
+        private readonly List<IField> _fields;
+        private IField _result;
 
         public Roulette()
         {
-            _fields = new List<Field>
+            _fields = new List<IField>
             {
                 new Field(0, Field.Green),
                 new Field(1, Field.Red),
@@ -60,7 +60,7 @@ namespace RouletteGame.Legacy
             _result = _fields[(int) n];
         }
 
-        public Field GetResult()
+        public IField GetResult()
         {
             return _result;
         }

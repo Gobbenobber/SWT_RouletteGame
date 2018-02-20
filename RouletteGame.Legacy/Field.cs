@@ -2,7 +2,13 @@
 
 namespace RouletteGame.Legacy
 {
-    public class Field
+    public interface IField
+    {
+        uint Number { get; }
+        uint Color { get; }
+        bool Even { get; }
+    }
+    public class Field : IField
     {
         public const uint Red = 0;
         public const uint Black = 1;

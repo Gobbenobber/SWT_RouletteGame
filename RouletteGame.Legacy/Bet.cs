@@ -4,24 +4,7 @@
     {
         string PlayerName { get; }
         uint Amount { get; }
-        uint WonAmount(Field field);
-    }
-    public abstract class Bet
-    {
-        protected Bet(string name, uint amount)
-        {
-            PlayerName = name;
-            Amount = amount;
-        }
-
-
-        public string PlayerName { get; }
-        public uint Amount { get; }
-
-        public virtual uint WonAmount(Field field)
-        {
-            return 0;
-        }
+        uint WonAmount(IField field);
     }
 
     public class FieldBet : IBet
@@ -40,7 +23,7 @@
             PlayerName = name;
         }
 
-        public uint WonAmount(Field field)
+        public uint WonAmount(IField field)
         {
             if (field.Number == _fieldNumber) return 36*Amount;
             return 0;
@@ -66,7 +49,7 @@
         public string PlayerName { get; }
         public uint Amount { get; }
 
-        public uint WonAmount(Field field)
+        public uint WonAmount(IField field)
         {
             if (field.Color == _color) return 2*Amount;
             return 0;
@@ -107,7 +90,7 @@
         public string PlayerName { get; }
         public uint Amount { get; }
 
-        public uint WonAmount(Field field)
+        public uint WonAmount(IField field)
         {
             if (field.Even == _even) return 2*Amount;
             return 0;
