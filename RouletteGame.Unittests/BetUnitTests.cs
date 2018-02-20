@@ -12,7 +12,7 @@ namespace RouletteGame.Unittests
     public class BetUnitTests
     {
         [Test]
-        void FieldBetConstructor_InputArguments_ObjectFieldsMatchArguments()
+        public void FieldBetConstructor_InputArguments_ObjectFieldsMatchArguments()
         {
             var uut = new FieldBet("Jonas", 500, 12);
 
