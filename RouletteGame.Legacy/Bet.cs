@@ -1,5 +1,11 @@
 ﻿namespace RouletteGame.Legacy
 {
+    public interface IBet
+    {
+        string PlayerName { get; }
+        uint Amount { get; }
+        uint WonAmount(Field field);
+    }
     public abstract class Bet
     {
         protected Bet(string name, uint amount)
@@ -18,16 +24,23 @@
         }
     }
 
-    public class FieldBet : Bet
+    public class FieldBet : IBet
     {
         private readonly uint _fieldNumber;
 
-        public FieldBet(string name, uint amount, uint fieldNumber) : base(name, amount)
+        public string PlayerName { get;}
+
+        public uint Amount { get; }
+    
+
+        public FieldBet(string name, uint amount, uint fieldNumber) 
         {
             _fieldNumber = fieldNumber;
+            Amount = amount;
+            PlayerName = name;
         }
 
-        public override uint WonAmount(Field field)
+        public uint WonAmount(Field field)
         {
             if (field.Number == _fieldNumber) return 36*Amount;
             return 0;
@@ -39,16 +52,21 @@
         }
     }
 
-    public class ColorBet : Bet
+    public class ColorBet : IBet
     {
         private readonly uint _color;
 
-        public ColorBet(string name, uint amount, uint color) : base(name, amount)
+        public ColorBet(string name, uint amount, uint color)
         {
             _color = color;
+            PlayerName = name;
+            Amount = amount;
         }
 
-        public override uint WonAmount(Field field)
+        public string PlayerName { get; }
+        public uint Amount { get; }
+
+        public uint WonAmount(Field field)
         {
             if (field.Color == _color) return 2*Amount;
             return 0;
@@ -75,16 +93,21 @@
         }
     }
 
-    public class EvenOddBet : Bet
+    public class EvenOddBet : IBet
     {
         private readonly bool _even;
 
-        public EvenOddBet(string name, uint amount, bool even) : base(name, amount)
+        public EvenOddBet(string name, uint amount, bool even) 
         {
             _even = even;
+            PlayerName = name;
+            Amount = amount;
         }
 
-        public override uint WonAmount(Field field)
+        public string PlayerName { get; }
+        public uint Amount { get; }
+
+        public uint WonAmount(Field field)
         {
             if (field.Even == _even) return 2*Amount;
             return 0;
