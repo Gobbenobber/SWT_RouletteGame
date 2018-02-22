@@ -8,6 +8,7 @@ namespace RouletteGame.Legacy
         void Spin();
         IField GetResult();
     }
+
     public class Roulette : IRoulette
     {
         private readonly List<IField> _fields;
