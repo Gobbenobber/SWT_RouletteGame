@@ -9,6 +9,19 @@ namespace RouletteGame.Legacy
         IField GetResult();
     }
 
+    public interface IRandom
+    {
+        int GetRandom(int min, int max);
+    }
+
+    public class RandomGenerator : IRandom
+    {
+        public int GetRandom(int min, int max)
+        {
+            return new Random().Next(min, max);
+        }
+    }
+
     public class Roulette : IRoulette
     {
         private readonly List<IField> _fields;
@@ -62,7 +75,7 @@ namespace RouletteGame.Legacy
 
         public void Spin()
         {
-            var n = (uint) new Random().Next(0, 37);
+            var n = (uint) new Random().Next(0, 37); 
             _result = _fields[(int) n];
         }
 
